@@ -1,4 +1,3 @@
-# vim:ft=ansible:
 ---
 
 - name: "Install CloudWatch Log Agent"
