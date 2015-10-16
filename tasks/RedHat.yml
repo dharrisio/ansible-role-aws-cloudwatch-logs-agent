@@ -1,0 +1,7 @@
+# vim:ft=ansible:
+---
+
+- name: "Install CloudWatch Log Agent"
+  yum:
+    name: awslogs
+    state: present

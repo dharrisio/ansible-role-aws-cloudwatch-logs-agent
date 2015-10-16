@@ -1,0 +1,10 @@
+# vim:ft=ansible:
+---
+
+- name: "Configure AWS CloudWatch Logs Agent"
+  template:
+    src: etc/awslogs/awscli.conf.j2
+    dest: /etc/awslogs/awscli.conf
+    owner: root
+    group: root
+    mode: 0644
