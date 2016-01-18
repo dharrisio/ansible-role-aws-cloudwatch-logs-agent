@@ -5,12 +5,18 @@
   when: ansible_os_family == "RedHat"
 
 - name: "Download Debian/Ubuntu Cloudwatch Log Agent Install Script"
-  include "Debian.yml"
+  include: "Debian.yml"
   when: ansible_os_family == "Debian"
 
 - name: "Configure Cloudwatch Log Agent"
-  include "conf.yml"
+  include: "conf.yml"
 
 - name: "Install Debian/Ubuntu Cloudwatch Log Agent"
   include: "DebianInstall.yml"
   when: ansible_os_family == "Debian"
+
+- name: "Restart awslogs service"
+  service:
+    name: awslogs
+    state: restarted
+

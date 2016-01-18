@@ -6,3 +6,8 @@
     dest: /tmp/awslogs-agent-setup.py
     mode: 550
 
+- name: "Create /etc/awslogs"
+  file:
+    path: /etc/awslogs
+    state: directory
+    mode: 755

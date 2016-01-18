@@ -1,9 +1,15 @@
 ---
 
+- name: "Make /var/awslogs/state/ directory"
+  file:
+    path: /var/awslogs/state/
+    state: directory
+    mode: 755
+
 - name: "Configure AWS CloudWatch Logs Agent"
   template:
-    src: etc/awslogs/awscli.conf.j2
-    dest: /etc/awslogs/awscli.conf
+    src: etc/awslogs/awslogs.conf.j2
+    dest: /etc/awslogs/awslogs.conf
     owner: root
     group: root
     mode: 0644
