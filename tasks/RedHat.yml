@@ -1,6 +1,6 @@
 ---
 
-- name: "Install CloudWatch Log Agent"
+- name: "Install CloudWatch Log Agent (RedHat)"
   yum:
     name: awslogs
     state: present

@@ -1,22 +1,21 @@
 ---
 
-- name: "Install RedHat/AMZN Linux Cloudwatch Log Agent"
+- name: "Install RedHat/AMZN Linux Cloudwatch Log Agent."
   include: "RedHat.yml"
   when: ansible_os_family == "RedHat"
 
-- name: "Download Debian/Ubuntu Cloudwatch Log Agent Install Script"
+- name: "Download Debian/Ubuntu Cloudwatch Log Agent Install Script."
   include: "Debian.yml"
   when: ansible_os_family == "Debian"
 
-- name: "Configure Cloudwatch Log Agent"
+- name: "Configure Cloudwatch Log Agent."
   include: "conf.yml"
 
-- name: "Install Debian/Ubuntu Cloudwatch Log Agent"
+- name: "Install Debian/Ubuntu Cloudwatch Log Agent."
   include: "DebianInstall.yml"
   when: ansible_os_family == "Debian"
 
-- name: "Restart awslogs service"
+- name: "Restart awslogs service."
   service:
     name: awslogs
     state: restarted
-
