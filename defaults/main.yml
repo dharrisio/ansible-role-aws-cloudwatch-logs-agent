@@ -1,3 +1,4 @@
 ---
 # defaults file for ansible-aws-cloudwatch-logs-agent
 extra_logs: {}
+stream_name: "{{ ansible_ec2_instance_id }}"
