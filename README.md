@@ -19,6 +19,8 @@ List of logs with the following keys
 | format     | Datetime format        | No
 | group_name | CloudWatch Log Group   | Yes
 
+Note: extra_logs is identical to logs.
+The two variables are merged in the template in order to allow the definition of both 'system' logs and 'specific' logs.
 
 Dependencies
 ------------
