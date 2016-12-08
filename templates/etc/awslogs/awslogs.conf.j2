@@ -116,7 +116,7 @@ state_file = /var/awslogs/state/agent-state
 #  %c           Locale's appropriate date and time representation.                                      Tue Aug 16 21:30:00 1988 (en_US)
 # ----------------------------------------------------------------------------------------------------------------------
 
-{% for log in logs %}
+{% for log in logs|list + extra_logs|list %}
 [{{ log.file }}]
 {% if log.format is defined %}
 datetime_format = {{ log.format }}
