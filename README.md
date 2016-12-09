@@ -13,14 +13,12 @@ Role Variables
 
 List of logs with the following keys
 
-| Name       | Description            | Required
-|------------|------------------------|---------
-| file       | Full path to log file  | Yes
-| format     | Datetime format        | No
-| group_name | CloudWatch Log Group   | Yes
-
-Note: extra_logs is identical to logs.
-The two variables are merged in the template in order to allow the definition of both 'system' logs and 'specific' logs.
+| Name        | Description                | Required | Default
+|-------------|----------------------------|----------|---------
+| file        | Full path to log file      | Yes      |
+| format      | Datetime format            | No       | None
+| group_name  | CloudWatch Log Group       | Yes      |
+| stream_name | CloudWatch Log Stream Name | No       | The instance id
 
 Dependencies
 ------------
