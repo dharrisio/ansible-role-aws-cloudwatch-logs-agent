@@ -123,5 +123,5 @@ datetime_format = {{ log.format }}
 {% endif %}
 file = {{ log.file }}
 log_group_name = {{ log.group_name }}
-log_stream_name = {instance_id}
+log_stream_name = {{ log.stream_name | default(stream_name) }}
 {% endfor %}
