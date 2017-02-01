@@ -1,4 +1,4 @@
 ---
 # defaults file for ansible-aws-cloudwatch-logs-agent
 extra_logs: {}
-stream_name: "{ instance_id }"
+stream_name: "{instance_id}"
