@@ -19,3 +19,4 @@
   service:
     name: awslogs
     state: restarted
+    enabled: yes
