@@ -4,15 +4,15 @@
   include: "RedHat.yml"
   when: ansible_os_family == "RedHat"
 
-- name: "Download Debian/Ubuntu Cloudwatch Log Agent Install Script."
-  include: "Debian.yml"
-  when: ansible_os_family == "Debian"
+- block:
+  - name: "Download Debian/Ubuntu Cloudwatch Log Agent Install Script."
+    include: "Debian.yml"
 
-- name: "Configure Cloudwatch Log Agent."
-  include: "conf.yml"
+  - name: "Configure Cloudwatch Log Agent."
+    include: "conf.yml"
 
-- name: "Install Debian/Ubuntu Cloudwatch Log Agent."
-  include: "DebianInstall.yml"
+  - name: "Install Debian/Ubuntu Cloudwatch Log Agent."
+    include: "DebianInstall.yml"
   when: ansible_os_family == "Debian"
 
 - name: "Determine region of the instance"
