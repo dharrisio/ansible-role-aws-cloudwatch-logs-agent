@@ -17,6 +17,16 @@
     group: root
     mode: 0644
 
+- name: "Make symlink for /var/awslogs/etc/awslogs.conf"
+  file:
+    src: /etc/awslogs/awslogs.conf
+    dest: /var/awslogs/etc/awslogs.conf
+    state: link
+    owner: root
+    group: root
+    mode: 0644
+    force: true
+
 - name: "Configure AWS CloudWatch Logs Agent - Region"
   template:
     src: etc/awslogs/awscli.conf.j2
