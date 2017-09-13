@@ -17,6 +17,15 @@
     group: root
     mode: 0644
 
+- name: "Configure AWS CloudWatch Log Agent logging"
+  template:
+    src: etc/awslogs/awslogs.logging.conf.j2
+    dest: /etc/awslogs/awslogs.logging.conf
+    owner: root
+    group: root
+    mode: 0644
+  when: "'{{ own_loglevel | default('') }}' != ''"
+
 - name: "Configure AWS CloudWatch Logs Agent - Region"
   template:
     src: etc/awslogs/awscli.conf.j2
