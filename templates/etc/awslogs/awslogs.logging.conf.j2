@@ -22,44 +22,44 @@ qualname=cwlogs.push
 propagate=0
             
 [logger_reader]
-level={{ own_loglevel | upper }}
+level={{ awslogs_loglevel | upper }}
 handlers=consoleHandler
 qualname=cwlogs.push.reader
 propagate=0
             
 [logger_publisher]
-level={{ own_loglevel | upper }}
+level={{ awslogs_loglevel | upper }}
 handlers=consoleHandler
 qualname=cwlogs.push.publisher
 propagate=0
             
 [logger_event]
-level={{ own_loglevel | upper }}
+level={{ awslogs_loglevel | upper }}
 handlers=consoleHandler
 qualname=cwlogs.push.event
 propagate=0
             
 [logger_batch]
-level={{ own_loglevel | upper }}
+level={{ awslogs_loglevel | upper }}
 handlers=consoleHandler
 qualname=cwlogs.push.batch
 propagate=0
             
 [logger_stream]
-level={{ own_loglevel | upper }}
+level={{ awslogs_loglevel | upper }}
 handlers=consoleHandler
 qualname=cwlogs.push.stream
 propagate=0
             
 [logger_watcher]
-level={{ own_loglevel | upper }}
+level={{ awslogs_loglevel | upper }}
 handlers=consoleHandler
 qualname=cwlogs.push.watcher
 propagate=0
             
 [handler_consoleHandler]
 class=logging.StreamHandler
-level={{ own_loglevel | upper }}
+level={{ awslogs_loglevel | upper }}
 formatter=simpleFormatter
 args=(sys.stderr,)
             
