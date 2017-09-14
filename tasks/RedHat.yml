@@ -28,6 +28,18 @@
 
   - name: "Install AWS CloudWatch Logs Agent (RedHat)."
     shell: python /tmp/awslogs-agent-setup.py -n -r {{ ansible_ec2_placement_region }} -c /etc/awslogs/awslogs.conf
+    args:
+      creates: /etc/logrotate.d/awslogs
+
+  - name: "Make symlink for /var/awslogs/etc/awslogs.conf"
+    file:
+      src: /etc/awslogs/awslogs.conf
+      dest: /var/awslogs/etc/awslogs.conf
+      state: link
+      owner: root
+      group: root
+      mode: 0644
+      force: true
 
   - name: "Override /etc/logrotate.d/awslogs"
     template:
