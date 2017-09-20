@@ -15,13 +15,6 @@
     include: "DebianInstall.yml"
   when: ansible_os_family == "Debian"
 
-- name: "Determine region of the instance"
-  shell: curl --silent http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | awk -e '{ print $3 }' | sed 's/"//g'
-  register: aws_region_cmd
-
-- set_fact:
-    aws_region: "{{ aws_region_cmd.stdout }}"
-
 - name: "Set region for Cloudwatch endpoint"
   template:
     src: templates/etc/aws.conf.j2
