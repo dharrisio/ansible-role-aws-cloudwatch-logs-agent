@@ -35,6 +35,9 @@
 # Path to the CloudWatch Logs agent's state file. The agent uses this file to maintain
 # client side state across its executions.
 state_file = /var/awslogs/state/agent-state
+{% if awslogs_loglevel != '' %}
+logging_config_file = /etc/awslogs/awslogs.logging.conf
+{% endif %}
 
 ## Each log file is defined in its own section. The section name doesn't
 ## matter as long as its unique within this file.
