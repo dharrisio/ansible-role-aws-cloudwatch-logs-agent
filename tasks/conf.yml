@@ -24,7 +24,7 @@
     owner: root
     group: root
     mode: 0644
-  when: "'{{ awslogs_loglevel | default('') }}' != ''"
+  when: awslogs_loglevel != ""
 
 - name: "Configure AWS CloudWatch Logs Agent - Region"
   template:
