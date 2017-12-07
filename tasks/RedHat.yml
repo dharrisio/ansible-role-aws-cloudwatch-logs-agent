@@ -23,9 +23,6 @@
       state: directory
       mode: 755
 
-  - name: "Configure Cloudwatch Log Agent."
-    include: "conf.yml"
-
   - name: "Install AWS CloudWatch Logs Agent (RedHat)."
     shell: python /tmp/awslogs-agent-setup.py -n -r {{ ansible_ec2_placement_region }} -c /etc/awslogs/awslogs.conf
     args:

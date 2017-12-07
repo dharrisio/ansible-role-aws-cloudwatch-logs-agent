@@ -23,6 +23,9 @@
     group: root
     mode: 0600
 
+- name: "Configure Cloudwatch Log Agent."
+  include: "conf.yml"
+
 - name: "Restart awslogs service."
   service:
     name: awslogs
