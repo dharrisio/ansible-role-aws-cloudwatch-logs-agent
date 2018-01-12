@@ -1,5 +1,14 @@
 ---
 
+- name: "Create /etc/awslogs"
+  file:
+    path: /etc/awslogs
+    state: directory
+    mode: 755
+
+- name: "Configure Cloudwatch Log Agent."
+  include: "conf.yml"
+
 - stat: path=/var/log/awslogs-agent-setup.log
   register: agent_setup_log
 
@@ -15,9 +24,6 @@
     owner: root
     group: root
     mode: 0600
-
-- name: "Configure Cloudwatch Log Agent."
-  include: "conf.yml"
 
 - name: "Restart awslogs service."
   service:
