@@ -1,8 +1,5 @@
 ---
 
-- name: gather EC2 facts
-  ec2_facts:
-
 - name: "Make /var/awslogs/state/ directory"
   file:
     path: /var/awslogs/state/
