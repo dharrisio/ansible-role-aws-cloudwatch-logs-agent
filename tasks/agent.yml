@@ -1,0 +1,35 @@
+---
+
+- name: "Download Install Script"
+  get_url:
+    url: https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
+    dest: /tmp/awslogs-agent-setup.py
+    mode: 550
+
+- name: "Create /etc/awslogs"
+  file:
+    path: /etc/awslogs
+    state: directory
+    mode: 755
+
+- name: "Install AWS CloudWatch Logs Agent"
+  shell: python /tmp/awslogs-agent-setup.py -n -r {{ ansible_ec2_placement_region }} -c /etc/awslogs/awslogs.conf
+
+- name: "Make symlink for /var/awslogs/etc/awslogs.conf"
+  file:
+    src: /etc/awslogs/awslogs.conf
+    dest: /var/awslogs/etc/awslogs.conf
+    state: link
+    owner: root
+    group: root
+    mode: 0644
+    force: true
+
+
+- name: "Install Debian Specifics"
+  include: "Debian.yml"
+  when: ansible_os_family == "Debian"
+
+- name: "Install RedHat/AMZN Specifics"
+  include: "RedHat.yml"
+  when: ansible_os_family == "RedHat"

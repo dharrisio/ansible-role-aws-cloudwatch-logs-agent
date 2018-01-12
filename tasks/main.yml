@@ -1,15 +1,12 @@
 ---
 
-- name: "Install RedHat/AMZN Linux Cloudwatch Log Agent."
-  include: "RedHat.yml"
-  when: ansible_os_family == "RedHat"
+- stat: path=/var/log/awslogs-agent-setup.log
+  register: agent_setup_log
 
-- block:
-  - name: "Download Debian/Ubuntu Cloudwatch Log Agent Install Script."
-    include: "Debian.yml"
-  - name: "Install Debian/Ubuntu Cloudwatch Log Agent."
-    include: "DebianInstall.yml"
-  when: ansible_os_family == "Debian"
+- name: "Install Cloudwatch Log Agent"
+  include: "agent.yml"
+  when:
+    - agent_setup_log.stat.exists == False
 
 - name: "Set region for Cloudwatch endpoint"
   template:
@@ -27,3 +24,4 @@
     name: awslogs
     state: restarted
     enabled: yes
+
