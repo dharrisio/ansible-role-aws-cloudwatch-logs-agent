@@ -20,14 +20,11 @@
 - name: "Set region for Cloudwatch endpoint"
   template:
     src: templates/etc/aws.conf.j2
-    dest: /var/awslogs/etc/aws.conf
+    dest: /etc/awslogs/awslogs.conf
     owner: root
     group: root
     mode: 0600
+  notify:
+    - restart awslogs
 
-- name: "Restart awslogs service."
-  service:
-    name: awslogs
-    state: restarted
-    enabled: yes
 
