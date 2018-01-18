@@ -1,10 +1,26 @@
 ---
 
+- name: "Create /etc/awslogs"
+  file:
+    path: /etc/awslogs
+    state: directory
+    mode: 755
+
 - name: "Make /var/awslogs/state/ directory"
   file:
     path: /var/awslogs/state/
     state: directory
     mode: 755
+
+- name: "Drop the awslogs configuration file"
+  template:
+    src: templates/etc/aws.conf.j2
+    dest: /etc/awslogs/awslogs.conf
+    owner: root
+    group: root
+    mode: 0600
+  notify:
+    - restart awslogs
 
 - name: "Configure AWS CloudWatch Log Agent logging"
   template:
