@@ -11,14 +11,3 @@
   when:
     - agent_setup_log.stat.exists == False
 
-- name: "Set region for Cloudwatch endpoint"
-  template:
-    src: templates/etc/aws.conf.j2
-    dest: /etc/awslogs/awslogs.conf
-    owner: root
-    group: root
-    mode: 0600
-  notify:
-    - restart awslogs
-
-

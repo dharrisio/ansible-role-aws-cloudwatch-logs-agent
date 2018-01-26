@@ -12,9 +12,19 @@
     state: directory
     mode: 755
 
-- name: "Drop the awslogs configuration file"
+- name: "Set region for Cloudwatch endpoint"
   template:
     src: templates/etc/aws.conf.j2
+    dest: /var/awslogs/etc/aws.conf
+    owner: root
+    group: root
+    mode: 0600
+  notify:
+    - restart awslogs
+
+- name: "Drop the awslogs configuration file"
+  template:
+    src: templates/etc/awslogs.conf.j2
     dest: /etc/awslogs/awslogs.conf
     owner: root
     group: root
@@ -29,5 +39,7 @@
     owner: root
     group: root
     mode: 0644
+  notify:
+    - restart awslogs
   when: awslogs_loglevel != ""
 
