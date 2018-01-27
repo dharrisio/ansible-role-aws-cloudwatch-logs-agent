@@ -1,5 +1,4 @@
 ---
-
 - name: "Configure Cloudwatch Log Agent."
   include: "conf.yml"
 
@@ -10,4 +9,5 @@
   include: "agent.yml"
   when:
     - agent_setup_log.stat.exists == False
+
 

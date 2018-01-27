@@ -24,8 +24,8 @@
 
 - name: "Drop the awslogs configuration file"
   template:
-    src: templates/etc/awslogs.conf.j2
-    dest: /etc/awslogs/awslogs.conf
+    src: templates/etc/awslogs/awslogs.conf.j2 
+    dest: /var/awslogs/etc/awslogs.conf
     owner: root
     group: root
     mode: 0600
