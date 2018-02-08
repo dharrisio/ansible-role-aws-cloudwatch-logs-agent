@@ -1,5 +1,11 @@
 ---
 
+- name: "Create /var/awslogs/etc"
+  file:
+    path: /var/awslogs/etc
+    state: directory
+    mode: 755
+
 - name: "Create /etc/awslogs"
   file:
     path: /etc/awslogs

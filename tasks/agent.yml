@@ -22,11 +22,17 @@
 
 - name: "Install AWS CloudWatch Logs Agent"
   shell: python /tmp/awslogs-agent-setup.py -n -r {{ ansible_ec2_placement_region }} -c /tmp/awslogs.conf
+  notify:
+    - restart awslogs
 
 - name: "Install Debian Specifics"
   include: "Debian.yml"
+  notify:
+    - restart awslogs
   when: ansible_os_family == "Debian"
 
 - name: "Install RedHat/AMZN Specifics"
   include: "RedHat.yml"
+  notify:
+    - restart awslogs
   when: ansible_os_family == "RedHat"
