@@ -1,0 +1,38 @@
+---
+
+- name: "Drop the TMP awslogs configuration file"
+  template:
+    src: templates/etc/awslogs/awslogs.conf.j2
+    dest: /tmp/awslogs.conf
+    owner: root
+    group: root
+    mode: 0600
+
+- name: "Download Install Script"
+  get_url:
+    url: https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
+    dest: /tmp/awslogs-agent-setup.py
+    mode: 550
+
+- name: "Create /etc/awslogs"
+  file:
+    path: /etc/awslogs
+    state: directory
+    mode: 755
+
+- name: "Install AWS CloudWatch Logs Agent"
+  shell: python /tmp/awslogs-agent-setup.py -n -r {{ ansible_ec2_placement_region }} -c /tmp/awslogs.conf
+  notify:
+    - restart awslogs
+
+- name: "Install Debian Specifics"
+  include: "Debian.yml"
+  notify:
+    - restart awslogs
+  when: ansible_os_family == "Debian"
+
+- name: "Install RedHat/AMZN Specifics"
+  include: "RedHat.yml"
+  notify:
+    - restart awslogs
+  when: ansible_os_family == "RedHat"

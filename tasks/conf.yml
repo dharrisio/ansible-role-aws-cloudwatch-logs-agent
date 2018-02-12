@@ -1,7 +1,16 @@
 ---
 
-- name: gather EC2 facts
-  ec2_facts:
+- name: "Create /var/awslogs/etc"
+  file:
+    path: /var/awslogs/etc
+    state: directory
+    mode: 755
+
+- name: "Create /etc/awslogs"
+  file:
+    path: /etc/awslogs
+    state: directory
+    mode: 755
 
 - name: "Make /var/awslogs/state/ directory"
   file:
@@ -9,13 +18,25 @@
     state: directory
     mode: 755
 
-- name: "Configure AWS CloudWatch Logs Agent"
+- name: "Set region for Cloudwatch endpoint"
   template:
-    src: etc/awslogs/awslogs.conf.j2
-    dest: /etc/awslogs/awslogs.conf
+    src: templates/etc/aws.conf.j2
+    dest: /var/awslogs/etc/aws.conf
     owner: root
     group: root
-    mode: 0644
+    mode: 0600
+  notify:
+    - restart awslogs
+
+- name: "Drop the awslogs configuration file"
+  template:
+    src: templates/etc/awslogs/awslogs.conf.j2 
+    dest: /var/awslogs/etc/awslogs.conf
+    owner: root
+    group: root
+    mode: 0600
+  notify:
+    - restart awslogs
 
 - name: "Configure AWS CloudWatch Log Agent logging"
   template:
@@ -24,12 +45,7 @@
     owner: root
     group: root
     mode: 0644
+  notify:
+    - restart awslogs
   when: awslogs_loglevel != ""
 
-- name: "Configure AWS CloudWatch Logs Agent - Region"
-  template:
-    src: etc/awslogs/awscli.conf.j2
-    dest: /etc/awslogs/awscli.conf
-    owner: root
-    group: root
-    mode: 0644
