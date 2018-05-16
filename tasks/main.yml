@@ -25,6 +25,6 @@
 
 - name: "Restart awslogs service."
   service:
-    name: awslogs
+    name: {{ daemon_name }}
     state: restarted
     enabled: yes

@@ -11,6 +11,6 @@
     compress
     rotate 4
     postrotate
-        service awslogs restart > /dev/null
+        service {{ daemon_name }} restart > /dev/null
     endscript
 }

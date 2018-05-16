@@ -18,9 +18,9 @@
 # --- AGENT COMMANDS ---
 # To check or change the running status of the CloudWatch Logs Agent, use the following:
 #
-# To check running status: /etc/init.d/awslogs status
-# To stop the agent: /etc/init.d/awslogs stop
-# To start the agent: /etc/init.d/awslogs start
+# To check running status: /etc/init.d/{{ daemon_name }} status
+# To stop the agent: /etc/init.d/{{ daemon_name }} stop
+# To start the agent: /etc/init.d/{{ daemon_name }} start
 #
 # --- AGENT LOG OUTPUT ---
 # You can find logs for the agent in /var/log/awslogs.log
