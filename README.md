@@ -27,6 +27,9 @@ default level (info) will be used. This parameter is very basic and does not
 allow flexible logging configuration, its only goal is to change the amount
 of logs going into the log agent's own logfile.
 
+`daemon_name`: Optional AWS log daemon service name, e.g. "awslogsd" for Amazon 
+Linux 2
+
 Dependencies
 ------------
 
@@ -44,6 +47,7 @@ Example Playbook
             stream_name: "auth-stream"
           - file: /home/ubuntu/.bash_history
             group_name: "bash_history"
+        daemon_name: "awslogsd"
         awslogs_loglevel: info
       roles:
          - { role: dharrisio.aws-cloudwatch-logs }
