@@ -33,12 +33,12 @@
       name: awslogs
       state: restarted
       enabled: yes
-  when: ansible_distribution != "Amazon" and os_family != "Redhat"
+  when: ansible_distribution != "Amazon" and ansible_os_family != "Redhat"
 
-- name: Display all variables/facts known for a host
-  debug:
-    var: hostvars[inventory_hostname]
-  tags: debug_info
+# - name: Display all variables/facts known for a host
+#   debug:
+#     var: hostvars[inventory_hostname]
+#   tags: debug_info
 
 - block:
   - name: "Restart awslogsd service."
@@ -47,4 +47,4 @@
       state: restarted
       enabled: yes
 
-  when: ansible_distribution == "Amazon" and os_family == "Redhat"
+  when: ansible_distribution == "Amazon" and ansible_os_family == "Redhat"
