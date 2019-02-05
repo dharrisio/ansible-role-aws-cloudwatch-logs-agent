@@ -33,7 +33,7 @@
       name: awslogs
       state: restarted
       enabled: yes
-  when: ansible_distribution != "Amazon" and ansible_os_family != "Redhat"
+  when: ansible_distribution != "Amazon" and ansible_os_family != "RedHat"
 
 # - name: Display all variables/facts known for a host
 #   debug:
@@ -47,4 +47,4 @@
       state: restarted
       enabled: yes
 
-  when: ansible_distribution == "Amazon" and ansible_os_family == "Redhat"
+  when: ansible_distribution == "Amazon" and ansible_os_family == "RedHat"
