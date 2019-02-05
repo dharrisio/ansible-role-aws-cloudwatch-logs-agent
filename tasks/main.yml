@@ -29,7 +29,7 @@
       name: awslogs
       state: restarted
       enabled: yes
-  when: ansible_distribution != "Amazon" and ansible_distribution_version != "2"
+  when: ansible_distribution != "Amazon" and ansible_distribution_major_version != "2"
 
 - block:
   - name: "Restart awslogsd service."
@@ -45,4 +45,4 @@
   #     owner: root
   #     group: root
   #     mode: 0644
-  when: ansible_distribution == "Amazon" and ansible_distribution_version == "2"
+  when: ansible_distribution == "Amazon" and ansible_distribution_major_version == "2"
