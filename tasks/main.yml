@@ -28,3 +28,11 @@
     name: awslogs
     state: restarted
     enabled: yes
+  when: ansible_distribution != "Amazon" and ansible_distribution_version != "2"
+
+- name: "Restart awslogsd service."
+  service:
+    name: awslogsd
+    state: restarted
+    enabled: yes
+  when: ansible_distribution == "Amazon" and ansible_distribution_version == "2"
