@@ -5,7 +5,7 @@
     include: "RedHat.yml"
 
   - name: "Configure Cloudwatch Log Agent."
-      include: "conf.yml"
+    include: "conf.yml"
   when: ansible_os_family == "RedHat"    
 
 - block:
