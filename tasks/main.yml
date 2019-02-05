@@ -15,24 +15,34 @@
     include: "DebianInstall.yml"
   when: ansible_os_family == "Debian"
 
-- name: "Set region for Cloudwatch endpoint"
-  template:
-    src: templates/etc/aws.conf.j2
-    dest: /var/awslogs/etc/aws.conf
-    owner: root
-    group: root
-    mode: 0600
+- block:
+  - name: "Set region for Cloudwatch endpoint"
+    template:
+      src: templates/etc/aws.conf.j2
+      dest: /var/awslogs/etc/aws.conf
+      owner: root
+      group: root
+      mode: 0600
 
-- name: "Restart awslogs service."
-  service:
-    name: awslogs
-    state: restarted
-    enabled: yes
+  - name: "Restart awslogs service."
+    service:
+      name: awslogs
+      state: restarted
+      enabled: yes
   when: ansible_distribution != "Amazon" and ansible_distribution_version != "2"
 
-- name: "Restart awslogsd service."
-  service:
-    name: awslogsd
-    state: restarted
-    enabled: yes
+- block:
+  - name: "Restart awslogsd service."
+    service:
+      name: awslogsd
+      state: restarted
+      enabled: yes
+
+  # - name: "Configure AWS CloudWatch Logs Agent - Region"
+  #   template:
+  #     src: etc/awslogs/awscli.conf.j2
+  #     dest: /etc/awslogs/awscli.conf
+  #     owner: root
+  #     group: root
+  #     mode: 0644
   when: ansible_distribution == "Amazon" and ansible_distribution_version == "2"
