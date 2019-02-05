@@ -35,6 +35,11 @@
       enabled: yes
   when: ansible_distribution != "Amazon" and ansible_distribution_major_version != "2"
 
+- name: Display all variables/facts known for a host
+  debug:
+    var: hostvars[inventory_hostname]
+    verbosity: 4
+    
 - block:
   - name: "Restart awslogsd service."
     service:
