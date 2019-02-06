@@ -42,4 +42,4 @@
       state: restarted
       enabled: yes
 
-  when: ansible_distribution == "Amazon" and ansible_os_family == "RedHat" and ansible_distribution_verion == "(Karoo)"
+  when: ansible_distribution == "Amazon" and ansible_os_family == "RedHat" and ansible_distribution_version == "(Karoo)"
