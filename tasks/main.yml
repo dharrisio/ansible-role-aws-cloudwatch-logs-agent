@@ -33,7 +33,9 @@
       name: awslogs
       state: restarted
       enabled: yes
-  when: ansible_distribution != "Amazon" and ansible_os_family != "RedHat" and ansible_distribution_version != "(Karoo)"
+  # If amazon linux 1 or not amazon linux 2
+  when: (ansible_distribution != "Amazon" and ansible_os_family != "RedHat" and ansible_distribution_version != "(Karoo)") or
+        (ansible_distribution == "Amazon" and ansible_os_family == "RedHat" and ansible_distribution_version == "2018.03")
 
 - block:
   - name: "Restart awslogsd service."
@@ -41,5 +43,5 @@
       name: awslogsd
       state: restarted
       enabled: yes
-
+  # If amazon linux 2
   when: ansible_distribution == "Amazon" and ansible_os_family == "RedHat" and ansible_distribution_version == "(Karoo)"
