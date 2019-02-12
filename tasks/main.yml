@@ -8,6 +8,11 @@
     include: "conf.yml"
   when: ansible_os_family == "RedHat"    
 
+- name: Display all variables/facts known for a host
+  debug:
+    var: hostvars[inventory_hostname]
+  tags: debug_info
+
 - block:
   - name: "Download Debian/Ubuntu Cloudwatch Log Agent Install Script."
     include: "Debian.yml"
