@@ -1,7 +1,7 @@
 ---
 
 - name: "Get ec2 facts (Debian)."
-  action: ec2_facts
+  action: ec2_metadata_facts
 
 - name: "Update Package Lists (Debian)."
   apt:

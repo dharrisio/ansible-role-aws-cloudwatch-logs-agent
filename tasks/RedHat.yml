@@ -9,7 +9,7 @@
 
 - block:
   - name: "Get ec2 facts (RedHat)."
-    action: ec2_facts
+    action: ec2_metadata_facts
 
   - name: "Download Install Script (RedHat)."
     get_url:
