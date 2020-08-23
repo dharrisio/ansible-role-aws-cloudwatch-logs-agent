@@ -6,7 +6,8 @@ Installs AWS CloudWatch Log Agent
 Requirements
 ------------
 
-Requires ec2_facts.
+Requires ec2_metadata_facts (so Asible must be > 2.4)
+
 
 Role Variables
 --------------
