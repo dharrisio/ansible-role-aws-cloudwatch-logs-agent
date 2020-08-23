@@ -46,7 +46,7 @@ Example Playbook
             group_name: "bash_history"
         awslogs_loglevel: info
       roles:
-         - { role: dharrisio.aws-cloudwatch-logs }
+         - { role: dharrisio.aws-cloudwatch-logs-agent }
 
 License
 -------
