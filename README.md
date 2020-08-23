@@ -3,6 +3,8 @@ Role Name
 
 Installs AWS CloudWatch Log Agent
 
+forked from dbarrisio with some pull requests merged. The old one looked like it wasn't being supported anymore.
+
 Requirements
 ------------
 
@@ -51,7 +53,7 @@ Example Playbook
         daemon_name: "awslogsd"
         awslogs_loglevel: info
       roles:
-         - { role: dharrisio.aws-cloudwatch-logs-agent }
+         - { role: baileywickham.aws-cloudwatch-logs-agent }
 
 License
 -------
@@ -62,3 +64,4 @@ Author Information
 ------------------
 
 Created by David Harris
+Forked by Bailey Wickham
